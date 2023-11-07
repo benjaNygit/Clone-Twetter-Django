@@ -17,7 +17,7 @@ class Account(AbstractUser):
         - is_active     (bool) -> Necesario para iniciar sesión en panel admin
         - date_joined   (datetime)
     """
-    email = models.EmailField(_("email address"), null=False) # copiado directamente
+    email = models.EmailField(_("email address"), null=False, unique=True) # copiado directamente
     first_name = None
     last_name = None
     name = models.CharField(max_length=50, null=False)
@@ -27,4 +27,5 @@ class Account(AbstractUser):
     foto_perfil = models.ImageField(upload_to='images/perfil/', null=True)
     foto_background = models.ImageField(upload_to='images/background/', null=True)
 
-    REQUIRED_FIELDS = ['birthday_date', 'email']
+    USERNAME_FIELD = 'email' # se inicia sesión con email
+    REQUIRED_FIELDS = ['birthday_date', 'username']
