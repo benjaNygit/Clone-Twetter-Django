@@ -14,45 +14,32 @@
     {% bootstrap_javascript %}
   </head>
   <body>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
-        <!-- zona del nav -->
-        <div class="col">
-          <div class="container mt-3">
-            <h2>Vertical Nav</h2>
-            <p>Use the .flex-column class to create a vertical nav:</p>
+        <!-- zona head -->
+        <header>
+          <nav class="container mt-3 ms-0">
             <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
+              <li class="nav-item"><img class="rounded-pill" src="https://static-cdn.jtvnw.net/jtv_user_pictures/84562095-52a9-4bff-b7c2-edbdcd86fb6f-profile_image-70x70.jpeg" alt="Imagen"></li>
+              <li class="nav-item h4 lead"><a href="#" class="nav-link">Inicio</a></li>
+              <li class="nav-item h4 lead"><a href="#" class="nav-link">Explorar</a></li>
+              <li class="nav-item h4 lead"><a href="#" class="nav-link">Notificaciones</a></li>
+              <li class="nav-item h4 lead"><a href="#" class="nav-link">Mensajes</a></li>
+              <li class="nav-item h4 lead"><a href="#" class="nav-link">Listas</a></li>
+              <li class="nav-item h4 lead"><a href="#" class="nav-link">Premium</a></li>
+              <li class="nav-item h4 lead"><a href="#" class="nav-link">Perfil</a> </li>
+              <li class="nav-item h4 lead"><a href="#" class="nav-link">Más opciones</a></li>
+              <li class="nav-item h4 lead">
+                <button type="button" class="btn btn-primary badge rounded-pill">Postear</button>
               </li>
             </ul>
-          </div>
-        </div>
-
-        <!-- Zona del contenido -->
-        <div class="col">
-          <div class="container-fluid">
-            <div class="row">
-              <!-- Posts -->
-              <div class="row">
-                {% block content %}
-                {% endblock %}
-              </div>
-              <!-- Footer -->
-              <div class="row"></div>
-            </div>
-          </div>
-        </div>
+          </nav>
+        </header>
+        
+        <!-- Zona main -->
+        <div class="col-sm-8"></div>
       </div>
+      <!---->
     </div>
   </body>
 </html>
