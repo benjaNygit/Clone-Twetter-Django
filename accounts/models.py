@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 
+import secrets
+
 # Create your models here.
 
 class Account(AbstractUser):
@@ -29,3 +31,18 @@ class Account(AbstractUser):
 
     USERNAME_FIELD = 'email' # se inicia sesión con email
     REQUIRED_FIELDS = ['birthday_date', 'username']
+
+class Following(models.Model):
+    """Modelo para guardar los seguidores de cada cuenta
+    Se genera una nueva fila por cada vez que un usuario sigue a otro.
+    Se debe de borrar la fila si se deja de seguir.
+    """
+    id = models.CharField(primary_key=True, max_length=20, unique=True, editable=False)
+    account = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='accounts')
+    follow = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='followers')
+
+    def save(self, *args, **kwargs):
+        """Guarda automáticamente un token como clave primaria (id)"""
+        if not self.id:
+            self.id = secrets.token_hex(20)
+        super(Following, self).save(*args, **kwargs)
