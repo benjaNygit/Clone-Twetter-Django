@@ -19,6 +19,7 @@ class Account(AbstractUser):
         - is_active     (bool) -> Necesario para iniciar sesión en panel admin
         - date_joined   (datetime)
     """
+    id = models.CharField(primary_key=True, max_length=5, unique=True, editable=False)
     email = models.EmailField(_("email address"), null=False, unique=True) # copiado directamente
     first_name = None
     last_name = None
@@ -31,6 +32,12 @@ class Account(AbstractUser):
 
     USERNAME_FIELD = 'email' # se inicia sesión con email
     REQUIRED_FIELDS = ['birthday_date', 'username']
+
+    def save(self, *args, **kwargs):
+        """Guarda automáticamente un token como clave primaria (id)"""
+        if not self.id:
+            self.id = secrets.token_hex(5)
+        super(Account, self).save(*args, **kwargs)
 
 class Following(models.Model):
     """Modelo para guardar los seguidores de cada cuenta
